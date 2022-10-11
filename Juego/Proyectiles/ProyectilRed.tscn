@@ -15,6 +15,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 2, 0.65, 0.65, 1 )
 rotation = 1.5708
 texture = ExtResource( 1 )
 
