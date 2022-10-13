@@ -54,11 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("mover_adelante")	or event.is_action_released("mover_atras"):
 			audio_motor.sonido_off()
 		
-	
-		
-		
-		
-
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(dir_rotacion*potencia_rotacion)
@@ -83,6 +78,8 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disable", true)
 			canion.set_puede_disparar(true)
+			Eventos.emit_signal("nave_destruida", global_position,3)
+			print("tire la pata")
 			queue_free()
 		_:
 			print("error de estado")
@@ -115,7 +112,11 @@ func player_input() -> void:
 	
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
+
+func destruir() -> void:
+	controlador_estados(ESTADO.MUERTO)
 	
+
 ##Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn" :
