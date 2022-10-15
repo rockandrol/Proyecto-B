@@ -64,5 +64,9 @@ func disparar() -> void:
 
 
 
+
+	
+
+
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true

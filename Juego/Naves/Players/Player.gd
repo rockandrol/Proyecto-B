@@ -8,6 +8,7 @@ enum ESTADO{SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
+export var hitpoints:float = 15.0
 
 ## Atributos
 var estado_actual:int = ESTADO.SPAWN
@@ -23,7 +24,7 @@ onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estelar = $Estela/Trail2D
 onready var audio_motor:AudioStreamPlayer2D = $motor_sfx
-
+onready var audio_danio:AudioStreamPlayer = $danio_sfx
 
 ## Metodos
 func _ready() -> void:
@@ -76,8 +77,8 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.INVENCIBLE:
 			colisionador.set_deferred("disable", true)
 		ESTADO.MUERTO:
-			colisionador.set_deferred("disable", true)
-			canion.set_puede_disparar(true)
+			colisionador.set_deferred("disable", false)
+			canion.set_puede_disparar(false)
 			Eventos.emit_signal("nave_destruida", global_position,3)
 			print("tire la pata")
 			queue_free()
@@ -121,3 +122,9 @@ func destruir() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn" :
 		controlador_estados(ESTADO.VIVO)
+		
+func recibir_danio(danio: float) -> void:
+	hitpoints -= danio
+	audio_danio.play()
+	if hitpoints <= 0.0:
+		destruir()
