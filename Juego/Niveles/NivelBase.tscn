@@ -12,6 +12,8 @@ explosion = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 300 )
+potencia_rotacion = 250
+hitpoints = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -19,3 +21,44 @@ environment = ExtResource( 3 )
 [node name="EnemigoDummy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 997.807, 267.27 )
 scale = Vector2( 2, 2 )
+
+[node name="PuntoIzquierdo" parent="EnemigoDummy/Canion" index="0"]
+position = Vector2( 0, 11.365 )
+
+[node name="PuntoDerecho" parent="EnemigoDummy/Canion" index="1"]
+position = Vector2( 0, -10.5946 )
+
+[node name="EnemigoDummy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1424.34, 550.646 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="Sprite" parent="EnemigoDummy2" index="1"]
+rotation = -3.14159
+
+[node name="Canion" parent="EnemigoDummy2" index="2"]
+cadencia_disparo = 0.5
+
+[node name="PuntoIzquierdo" parent="EnemigoDummy2/Canion" index="0"]
+position = Vector2( 0, -11.3924 )
+
+[node name="PuntoDerecho" parent="EnemigoDummy2/Canion" index="1"]
+position = Vector2( 0, 12.2363 )
+rotation = 3.14159
+
+[node name="EnemigoDummy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1004.93, 819.626 )
+scale = Vector2( 2, 2 )
+
+[node name="PuntoIzquierdo" parent="EnemigoDummy3/Canion" index="0"]
+position = Vector2( 0, -13.5 )
+
+[node name="PuntoDerecho" parent="EnemigoDummy3/Canion" index="1"]
+position = Vector2( 0, 17.5 )
+
+[editable path="EnemigoDummy"]
+[editable path="EnemigoDummy/Canion"]
+[editable path="EnemigoDummy2"]
+[editable path="EnemigoDummy2/Canion"]
+[editable path="EnemigoDummy3"]
+[editable path="EnemigoDummy3/Canion"]

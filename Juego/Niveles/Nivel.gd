@@ -14,7 +14,9 @@ func _ready() -> void:
 
 ## Metodos Custom
 func conectar_seniales() -> void:
+# warning-ignore:return_value_discarded
 	Eventos.connect("disparo", self, "_on_disparo")
+# warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida",self,"_on_nave_destruida")
 
 func crear_contenedores() -> void:
@@ -24,10 +26,10 @@ func crear_contenedores() -> void:
 
 
 func _on_disparo(proyectil:ProyectilRed) -> void:
-	add_child(proyectil)
+	contenedor_proyectiles.add_child(proyectil)
 
 func _on_nave_destruida(posicion: Vector2, num_explosiones: int) -> void:
-	for i in range(num_explosiones):
+	for _i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion
 		add_child(new_explosion)

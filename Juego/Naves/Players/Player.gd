@@ -8,6 +8,7 @@ enum ESTADO{SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
+export var hitpoints:float = 15.0
 
 ## Atributos
 var estado_actual:int = ESTADO.SPAWN
@@ -23,7 +24,8 @@ onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estelar = $Estela/Trail2D
 onready var audio_motor:AudioStreamPlayer2D = $motor_sfx
-
+onready var audio_danio:AudioStreamPlayer = $danio_sfx
+onready var escudo:Escudo = $Escudo
 
 ## Metodos
 func _ready() -> void:
@@ -34,7 +36,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
-		
+
+	# Control Escudo
+	if event.is_action_pressed("activar_escudo") and not escudo.get_esta_activado():
+		escudo.activar()
+
 	#Disparo Laser
 	if event.is_action_pressed("disparo_secundario"):
 		laser.set_is_casting(true)
@@ -54,12 +60,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("mover_adelante")	or event.is_action_released("mover_atras"):
 			audio_motor.sonido_off()
 		
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(dir_rotacion*potencia_rotacion)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_input()
 	
 ##Metodos Custom
@@ -76,8 +82,8 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.INVENCIBLE:
 			colisionador.set_deferred("disable", true)
 		ESTADO.MUERTO:
-			colisionador.set_deferred("disable", true)
-			canion.set_puede_disparar(true)
+			colisionador.set_deferred("disable", false)
+			canion.set_puede_disparar(false)
 			Eventos.emit_signal("nave_destruida", global_position,3)
 			print("tire la pata")
 			queue_free()
@@ -121,3 +127,9 @@ func destruir() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn" :
 		controlador_estados(ESTADO.VIVO)
+		
+func recibir_danio(danio: float) -> void:
+	hitpoints -= danio
+	audio_danio.play()
+	if hitpoints <= 0.0:
+		destruir()

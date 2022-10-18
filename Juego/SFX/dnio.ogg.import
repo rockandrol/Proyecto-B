@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dnio.ogg-94dcc79ca05eaf6646981d3397de5cd2.oggstr"
+
+[deps]
+
+source_file="res://Juego/SFX/dnio.ogg"
+dest_files=[ "res://.import/dnio.ogg-94dcc79ca05eaf6646981d3397de5cd2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
