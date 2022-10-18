@@ -14,7 +14,9 @@ func _ready() -> void:
 
 ## Metodos Custom
 func conectar_seniales() -> void:
+# warning-ignore:return_value_discarded
 	Eventos.connect("disparo", self, "_on_disparo")
+# warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida",self,"_on_nave_destruida")
 
 func crear_contenedores() -> void:

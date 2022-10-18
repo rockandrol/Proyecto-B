@@ -51,5 +51,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_body_entered(body: Node) -> void:
 	body.queue_free()
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	impacto_sfx.play()

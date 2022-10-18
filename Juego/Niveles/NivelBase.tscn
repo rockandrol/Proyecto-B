@@ -13,6 +13,7 @@ explosion = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 300 )
 potencia_rotacion = 250
+hitpoints = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -28,7 +29,7 @@ position = Vector2( 0, 11.365 )
 position = Vector2( 0, -10.5946 )
 
 [node name="EnemigoDummy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 997.807, 541.666 )
+position = Vector2( 1424.34, 550.646 )
 rotation = 3.14159
 scale = Vector2( 2, 2 )
 
