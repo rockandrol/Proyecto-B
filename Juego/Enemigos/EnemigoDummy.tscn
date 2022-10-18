@@ -29,6 +29,10 @@ cadencia_disparo = 1.5
 velocidad_proyectil = 1000
 danio_proyectil = 3
 
+[node name="DisparoSFX" parent="Canion" index="2"]
+volume_db = -44.255
+pitch_scale = 0.66
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 [editable path="Canion"]

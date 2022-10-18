@@ -25,6 +25,7 @@ onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estelar = $Estela/Trail2D
 onready var audio_motor:AudioStreamPlayer2D = $motor_sfx
 onready var audio_danio:AudioStreamPlayer = $danio_sfx
+onready var escudo:Escudo = $Escudo
 
 ## Metodos
 func _ready() -> void:
@@ -35,7 +36,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
-		
+
+	# Control Escudo
+	if event.is_action_pressed("activar_escudo") and not escudo.get_esta_activado():
+		escudo.activar()
+
 	#Disparo Laser
 	if event.is_action_pressed("disparo_secundario"):
 		laser.set_is_casting(true)
