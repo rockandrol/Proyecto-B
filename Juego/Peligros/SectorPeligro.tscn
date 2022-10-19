@@ -9,6 +9,7 @@ extents = Vector2( 47.4836, 45.9072 )
 [node name="SectorPeligro" type="Area2D"]
 collision_layer = 0
 script = ExtResource( 1 )
+numero_peligros = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

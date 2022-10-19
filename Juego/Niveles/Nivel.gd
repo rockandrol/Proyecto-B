@@ -85,18 +85,24 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 		new_sector_meteoritos.crear(centro_camara, numero_peligros)
 		camara_nivel.global_position = centro_camara
 		contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+		camara_nivel.zoom = $Player/CameraPlayer.zoom
+		camara_nivel.devolver_zoom_original()
 		transicion_camaras(
 			$Player/CameraPlayer.global_position,
 			camara_nivel.global_position,
 			camara_nivel,
 			tiempo_transicion_camara
 		)
-		camara_nivel.current = true
-		$TweenCamara.start()
-		
-func	controlar_meteoritos_restantes() -> void:
+
+func controlar_meteoritos_restantes() -> void:
 	meteoritos_totales -= 1
+	print(meteoritos_totales)
 	if meteoritos_totales == 0:
+		contenedor_sector_meteoritos.get_child(0).queue_free()
+		$Player/CameraPlayer.set_puede_hacer_zoom(true)
+		var zoom_actual = $Player/CameraPlayer.zoom
+		$Player/CameraPlayer.zoom = camara_nivel.zoom
+		$Player/CameraPlayer.zoom_suavisado(zoom_actual.x, zoom_actual.y, 1.0)
 		transicion_camaras(
 			camara_nivel.global_position,
 			$Player/CameraPlayer.global_position,
@@ -104,6 +110,7 @@ func	controlar_meteoritos_restantes() -> void:
 			tiempo_transicion_camara * 0.10
 		)
 
+# warning-ignore:unused_argument
 func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D, tiempo_transicion:float) -> void:
 	$TweenCamara.interpolate_property(
 		camara_actual,
@@ -114,8 +121,10 @@ func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D, 
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
+	camara_actual.current = true
+	$TweenCamara.start()
 
-
+# warning-ignore:unused_argument
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
-	if object.name == "CamaraPlayer":
+	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
