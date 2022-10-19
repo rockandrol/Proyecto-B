@@ -41,7 +41,7 @@ texture = ExtResource( 2 )
 
 [node name="Canion" parent="." instance=ExtResource( 4 )]
 proyectil = ExtResource( 5 )
-cadencia_disparo = 1.5
+cadencia_disparo = 3.0
 velocidad_proyectil = 1000
 danio_proyectil = 3
 

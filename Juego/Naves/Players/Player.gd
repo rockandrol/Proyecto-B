@@ -133,3 +133,9 @@ func recibir_danio(danio: float) -> void:
 	audio_danio.play()
 	if hitpoints <= 0.0:
 		destruir()
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is Meteorito:
+		body.destruir()
+		destruir()
