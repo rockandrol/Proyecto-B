@@ -397,7 +397,6 @@ tracks/31/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "impacto"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("meteorito_tiny1:position")
 tracks/0/interp = 1
@@ -816,44 +815,40 @@ anims/default = SubResource( 1 )
 anims/impacto = SubResource( 2 )
 
 [node name="meteorito_tiny1" type="Sprite" parent="."]
-visible = false
+position = Vector2( -0.061554, 0.110035 )
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 5 )
 offset = Vector2( -0.212082, 1.32973 )
 
 [node name="meteorito_tiny2" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 offset = Vector2( 0.41058, 0.81662 )
 
 [node name="meteorito_tiny3" type="Sprite" parent="."]
-visible = false
+position = Vector2( -0.061554, 0.110035 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.528046, -0.211594 )
 
 [node name="meteorito_tiny4" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 offset = Vector2( -0.790268, 0.50972 )
 
 [node name="meteorito_tiny5" type="Sprite" parent="."]
-visible = false
+position = Vector2( -0.061554, 0.110035 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.172775, 0.217978 )
 
 [node name="meteorito_tiny6" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 offset = Vector2( 0.617432, 0.234184 )
 
 [node name="meteorito_tiny7" type="Sprite" parent="."]
-visible = false
+position = Vector2( -0.506489, -0.627266 )
 texture = ExtResource( 5 )
 offset = Vector2( -0.712219, 0.627231 )
 
 [node name="meteorito_tiny8" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 offset = Vector2( 0.123791, 0.649078 )
 
