@@ -21,11 +21,12 @@ var dir_rotacion:int = 0
 ## Atributos Onready
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var canion:Canion = $Canion
-onready var laser:RayoLaser = $LaserBeam2D
+onready var laser:RayoLaser = $LaserBeam2D setget ,get_laser
 onready var estela:Estelar = $Estela/Trail2D
 onready var audio_motor:AudioStreamPlayer2D = $motor_sfx
 onready var audio_danio:AudioStreamPlayer = $danio_sfx
-onready var escudo:Escudo = $Escudo
+onready var escudo:Escudo = $Escudo setget ,get_escudo
+
 
 ## Metodos
 func _ready() -> void:
@@ -121,7 +122,13 @@ func player_input() -> void:
 
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
-	
+
+## Setters y Getters
+func get_laser() -> RayoLaser:
+	return laser
+
+func get_escudo() -> Escudo:
+	return escudo
 
 ##Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

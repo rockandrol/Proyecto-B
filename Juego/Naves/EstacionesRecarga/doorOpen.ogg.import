@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/doorOpen.ogg-fc2d91a7d9b218c369638f0c66929a7d.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/EstacionesRecarga/doorOpen.ogg"
+dest_files=[ "res://.import/doorOpen.ogg-fc2d91a7d9b218c369638f0c66929a7d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -44,6 +44,7 @@ texture = ExtResource( 9 )
 [node name="SectorPeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 4 )]
 position = Vector2( 954.703, 580.552 )
 tipo_peligro = "Meteorito"
+numero_peligros = 15
 
 [node name="CameraNivel" type="Camera2D" parent="."]
 script = ExtResource( 7 )
