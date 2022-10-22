@@ -82,7 +82,10 @@ func cast_beam(delta: float) -> void:
 	beam_particles.position = cast_point * 0.5
 	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
 
-
+func controlar_energia(consumo: float) -> void:
+	energia += consumo
+	print("Energia Laser: ", energia)
+	
 func appear() -> void:
 	if tween.is_active():
 		tween.stop_all()
