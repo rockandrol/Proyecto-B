@@ -84,7 +84,7 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disable", false)
 			canion.set_puede_disparar(false)
-			Eventos.emit_signal("nave_destruida", global_position,3)
+			Eventos.emit_signal("nave_destruida", self, global_position,3)
 			print("tire la pata")
 			queue_free()
 		_:
@@ -139,3 +139,5 @@ func _on_body_entered(body: Node) -> void:
 	if body is Meteorito:
 		body.destruir()
 		destruir()
+
+

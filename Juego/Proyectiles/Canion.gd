@@ -38,9 +38,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if esta_disparando and esta_enfriado:
 		disparar()	
-		
-	
-	
+
 func almacenar_puntos_disparo() -> void:
 		for nodo in get_children():
 			if nodo is Position2D:
@@ -60,13 +58,6 @@ func disparar() -> void:
 			danio_proyectil
 		)
 		Eventos.emit_signal("disparo", new_proyectil)
-	
-
-
-
-
-	
-
 
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true

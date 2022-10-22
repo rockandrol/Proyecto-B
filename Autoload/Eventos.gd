@@ -3,7 +3,7 @@ extends Node
 # warning-ignore:unused_signal
 signal disparo(proyectil)
 # warning-ignore:unused_signal
-signal nave_destruida(posicion, explosiones)
+signal nave_destruida(nave, posicion, explosiones)
 # warning-ignore:unused_signal
 signal spawn_meteorito(posicion, direccion, tamanio)
 # warning-ignore:unused_signal
