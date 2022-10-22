@@ -30,14 +30,33 @@ environment = ExtResource( 3 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 position = Vector2( 127.816, 127.816 )
+motion_mirroring = Vector2( 256, 256 )
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 832.867, 404.086 )
 scale = Vector2( 7.97691, 4.65704 )
 texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 832.867, 404.086 )
+scale = Vector2( 7.97691, 4.65704 )
+texture = ExtResource( 9 )
+offset = Vector2( 256, 0 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 832.867, 1840.84 )
+scale = Vector2( 7.97691, 4.65704 )
+texture = ExtResource( 9 )
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 832.867, 1840.84 )
+scale = Vector2( 7.97691, 4.65704 )
+texture = ExtResource( 9 )
+offset = Vector2( 256, 0 )
 
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
@@ -52,7 +71,9 @@ script = ExtResource( 7 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
-[node name="EstacionRecarga" parent="." instance=ExtResource( 11 )]
+[node name="ContenedorEstaciones" type="Node2D" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
 position = Vector2( 1411.2, 428.022 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
