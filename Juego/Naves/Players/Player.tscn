@@ -69,6 +69,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
+radio_danio = 4.0
 
 [node name="Canion" parent="." instance=ExtResource( 4 )]
 proyectil = ExtResource( 9 )
