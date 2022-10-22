@@ -13,6 +13,7 @@ var player_zona:bool = false
 onready var anim_esta:AnimationPlayer = $AnimationPlayer
 onready var carga_sfx:AudioStreamPlayer = $carga
 onready var vacio_sfx:AudioStreamPlayer = $vacio
+
 ## Metodos
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
