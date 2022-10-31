@@ -1,126 +1,60 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Juego/Naves/Players/player_red.png" type="Texture" id=1]
-[ext_resource path="res://Juego/Naves/Players/MaterialFisico.tres" type="PhysicsMaterial" id=2]
-[ext_resource path="res://Juego/Naves/Players/Player.gd" type="Script" id=3]
-[ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Naves/NaveBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Naves/Players/estela/Estela.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Naves/Players/CameraPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/Naves/Players/AnimacionesPlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Proyectiles/LaserBeam/LaserBeam2D.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Juego/Naves/Players/estela/Trail2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://TemporalAssets/sci-fi-sounds/Audio/thrusterFire_000.ogg" type="AudioStream" id=7]
-[ext_resource path="res://Juego/Motor/motor_sfx.gd" type="Script" id=8]
-[ext_resource path="res://Juego/Proyectiles/ProyectilPlayer.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Juego/SFX/dnio.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Juego/Motor/motor_sfx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Naves/Players/MaterialFisico.tres" type="PhysicsMaterial" id=7]
+[ext_resource path="res://Juego/Naves/Players/player_red.png" type="Texture" id=8]
+[ext_resource path="res://Juego/Naves/Players/Player.gd" type="Script" id=9]
 [ext_resource path="res://Juego/Naves/Players/Escudo/Escudo.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Juego/Naves/Players/CameraPlayer.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 37.3673
+radius = 33.9445
 
-[sub_resource type="Animation" id=2]
-resource_name = "default"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "spawn"
-length = 1.6
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
-}
-
-[node name="Player" type="RigidBody2D"]
+[node name="Player" instance=ExtResource( 1 )]
 z_index = 50
 z_as_relative = false
+collision_layer = 1
 collision_mask = 22
-physics_material_override = ExtResource( 2 )
-gravity_scale = 0.0
+physics_material_override = ExtResource( 7 )
 contacts_reported = 2
 contact_monitor = true
 can_sleep = false
 linear_damp = 1.0
 angular_damp = 4.0
-script = ExtResource( 3 )
-potencia_rotacion = 350
+script = ExtResource( 9 )
+hitpoints = 15.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" parent="." index="0"]
 rotation = 1.5708
-texture = ExtResource( 1 )
+z_index = 50
+z_as_relative = false
+texture = ExtResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
-[node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
-radio_danio = 4.0
-
-[node name="Canion" parent="." instance=ExtResource( 4 )]
-proyectil = ExtResource( 9 )
-
 [node name="PuntoIzquierdo" parent="Canion" index="0"]
-position = Vector2( 0, -30 )
+position = Vector2( 0, -20 )
 
 [node name="PuntoDerecho" parent="Canion" index="1"]
-position = Vector2( 0, 30 )
+position = Vector2( 0, 20 )
 
-[node name="Estela" type="Node2D" parent="."]
-position = Vector2( 33.234, -68.9314 )
+[node name="Escudo" parent="." index="4" instance=ExtResource( 11 )]
 
-[node name="Trail2D" parent="Estela" instance=ExtResource( 6 )]
-modulate = Color( 1, 0.68, 0, 0.37 )
-self_modulate = Color( 33.29, 12.56, 4.11, 0.38 )
-show_behind_parent = true
-points = PoolVector2Array( 0, 0, 50, 0 )
-width = 50.0
-lifetime = 0.25
-max_points = 150
-target_path = NodePath("../..")
+[node name="Estela" parent="." index="5" instance=ExtResource( 2 )]
 
-[node name="motor_sfx" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 7 )
-pitch_scale = 2.5
-bus = "SFX"
-script = ExtResource( 8 )
+[node name="motor_sfx" parent="." index="6" instance=ExtResource( 6 )]
 
-[node name="Tween" type="Tween" parent="motor_sfx"]
+[node name="AnimationPlayer" parent="." index="7" instance=ExtResource( 4 )]
 
-[node name="danio_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
-pitch_scale = 0.58
-bus = "SFX"
+[node name="CameraPlayer" parent="." index="8" instance=ExtResource( 3 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite")
-autoplay = "spawn"
-anims/default = SubResource( 2 )
-anims/spawn = SubResource( 3 )
+[node name="LaserBeam2D" parent="." index="9" instance=ExtResource( 5 )]
 
-[node name="Escudo" parent="." instance=ExtResource( 11 )]
-
-[node name="CameraPlayer" type="Camera2D" parent="."]
-current = true
-script = ExtResource( 12 )
-
-[node name="TweenZoom" type="Tween" parent="CameraPlayer"]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Canion"]

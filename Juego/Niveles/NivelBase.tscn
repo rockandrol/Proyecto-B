@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Juego/Niveles/Fondos/black.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Naves/EstacionesRecarga/EstacionRecarga.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=13]
 
 [node name="NivelBase" type="Node2D"]
 script = ExtResource( 2 )
@@ -18,11 +20,6 @@ explosion = ExtResource( 5 )
 meteorito = ExtResource( 6 )
 explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 10 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -178.098, 590.69 )
-potencia_rotacion = 200
-hitpoints = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -39,6 +36,7 @@ motion_mirroring = Vector2( 256, 256 )
 [node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 832.867, 404.086 )
 scale = Vector2( 7.97691, 4.65704 )
+z_as_relative = false
 texture = ExtResource( 9 )
 
 [node name="Sprite2" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
@@ -55,6 +53,7 @@ texture = ExtResource( 9 )
 [node name="Sprite4" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 832.867, 1840.84 )
 scale = Vector2( 7.97691, 4.65704 )
+z_as_relative = false
 texture = ExtResource( 9 )
 offset = Vector2( 256, 0 )
 
@@ -76,5 +75,13 @@ script = ExtResource( 7 )
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
 position = Vector2( 1411.2, 428.022 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="EnemigoInterceptor" parent="." instance=ExtResource( 12 )]
+position = Vector2( 154.458, 177.512 )
+
+[node name="EnemigoDummy" parent="." instance=ExtResource( 13 )]
+position = Vector2( 565.972, 213.574 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
