@@ -27,7 +27,7 @@ linear_damp = 1.0
 angular_damp = 4.0
 script = ExtResource( 9 )
 hitpoints = 15.0
-potencia_rotacion = 260
+potencia_rotacion = 200
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708

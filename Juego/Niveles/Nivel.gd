@@ -40,7 +40,10 @@ func conectar_seniales() -> void:
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 # warning-ignore:return_value_discarded
 	Eventos.connect("nave_en_sector_peligro",self, "_on_nave_en_sector_peligro")
+# warning-ignore:return_value_discarded
 	Eventos.connect("base_destruida",self, "_on_base_destruida")
+# warning-ignore:return_value_discarded
+	Eventos.connect("spawn_orbital",self, "_on_spawn_orbital")
 
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -80,7 +83,11 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 		)
 	crear_explosiones(posicion, num_explosiones)	
 
-func _on_base_destruida(posicion, num_explosiones: int = 5) -> void:
+func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
+	contenedor_enemigos.add_child(enemigo)
+
+# warning-ignore:unused_argument
+func _on_base_destruida(base, posicion, num_explosiones: int = 5) -> void:
 	crear_explosiones(posicion, num_explosiones)
 	yield(get_tree().create_timer(0.5),"timeout")
 
