@@ -11,6 +11,7 @@ export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
+export var base_enemiga:PackedScene = null
 export var tiempo_transicion_camara:float = 1
 
 ## Atributos Onready
@@ -18,6 +19,7 @@ onready var contenedor_enemigos:Node
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
 onready var contenedor_sector_meteoritos:Node
+onready var contenedor_bases_enemigas:Node
 onready var camara_nivel:Camera2D = $CameraNivel
 
 ## Metodos
@@ -38,6 +40,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 # warning-ignore:return_value_discarded
 	Eventos.connect("nave_en_sector_peligro",self, "_on_nave_en_sector_peligro")
+	Eventos.connect("base_destruida",self, "_on_base_destruida")
 
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -75,6 +78,13 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 			camara_nivel,
 			tiempo_transicion_camara	
 		)
+	crear_explosiones(posicion, num_explosiones)	
+
+func _on_base_destruida(posicion, num_explosiones: int = 5) -> void:
+	crear_explosiones(posicion, num_explosiones)
+	yield(get_tree().create_timer(0.5),"timeout")
+
+func crear_explosiones(posicion:Vector2, num_explosiones:int) -> void:
 	for _i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0,50.0)

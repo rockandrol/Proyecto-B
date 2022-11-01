@@ -11,7 +11,7 @@
 [ext_resource path="res://Juego/Niveles/Fondos/black.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Naves/EstacionesRecarga/EstacionRecarga.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/BaseEnemiga.tscn" type="PackedScene" id=13]
 
 [node name="NivelBase" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,7 +19,7 @@ explosion = ExtResource( 5 )
 meteorito = ExtResource( 6 )
 explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 10 )
-enemigo_interceptor = ExtResource( 12 )
+enemigo_interceptor = ExtResource( 13 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -64,20 +64,6 @@ position = Vector2( 954.703, 580.552 )
 tipo_peligro = "Meteorito"
 numero_peligros = 10
 
-[node name="CameraNivel" type="Camera2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="TweenZoom" type="Tween" parent="CameraNivel"]
-
-[node name="TweenCamara" type="Tween" parent="."]
-
-[node name="ContenedorEstaciones" type="Node2D" parent="."]
-
-[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 3689.14, 2242.31 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
 [node name="TriggersInterceptores" type="Node" parent="."]
 
 [node name="SectorPeligro" parent="TriggersInterceptores" instance=ExtResource( 4 )]
@@ -85,10 +71,23 @@ position = Vector2( -289.595, 199.798 )
 tipo_peligro = "Enemigo"
 numero_peligros = 2
 
-[node name="Sprite" parent="TriggersInterceptores/SectorPeligro" index="2"]
-modulate = Color( 1, 0, 0, 0.78 )
-position = Vector2( 3.36737, 0 )
+[node name="ContenedorEstaciones" type="Node2D" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 3689.14, 2242.31 )
+
+[node name="ContenedorBasesEnemigas" type="Node" parent="."]
+
+[node name="CameraNivel" type="Camera2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="TweenZoom" type="Tween" parent="CameraNivel"]
+
+[node name="TweenCamara" type="Tween" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="BaseEnemiga" parent="." instance=ExtResource( 13 )]
+position = Vector2( 3500.2, 482.182 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
-
-[editable path="TriggersInterceptores/SectorPeligro"]
