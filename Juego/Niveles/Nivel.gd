@@ -4,6 +4,7 @@ extends Node2D
 ## Atributos
 var meteoritos_totales:int = 0
 var player:Player = null
+var numero_bases_enemigas = 0
 
 ## Variables Export
 export var explosion:PackedScene = null
@@ -11,7 +12,7 @@ export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
-export var base_enemiga:PackedScene = null
+export var rele_masa:PackedScene = null
 export var tiempo_transicion_camara:float = 1
 
 ## Atributos Onready
@@ -20,14 +21,20 @@ onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
 onready var contenedor_sector_meteoritos:Node
 onready var contenedor_bases_enemigas:Node
+onready var contenedor_rele_masa:Node
+onready var contenedor_explosiones:Node
 onready var camara_nivel:Camera2D = $CameraNivel
+
 
 ## Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
+	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
 
+
+	
 ## Metodos Custom
 func conectar_seniales() -> void:
 # warning-ignore:return_value_discarded
@@ -53,6 +60,10 @@ func crear_contenedores() -> void:
 	contenedor_meteoritos = Node.new()
 	contenedor_meteoritos.name = "ContenedorMeteoritos"
 	add_child(contenedor_meteoritos)
+	
+	contenedor_explosiones = Node.new()
+	contenedor_explosiones.name = "ContenedorExplosiones"
+	add_child(contenedor_explosiones)
 
 	contenedor_sector_meteoritos = Node.new()
 	contenedor_sector_meteoritos.name = "ContenedorSectorMeteoritos"
@@ -61,6 +72,18 @@ func crear_contenedores() -> void:
 	contenedor_enemigos = Node.new()
 	contenedor_enemigos.name = "ContenedorEnemigos"
 	add_child(contenedor_enemigos)
+	
+	contenedor_rele_masa = Node.new()
+	contenedor_rele_masa.name = "ContenedorRele"
+	add_child(contenedor_rele_masa)
+	
+func contabilizar_bases_enemigas() -> int:
+	return $ContenedorBasesEnemigas.get_child_count()
+
+func crear_rele() -> void:
+	var new_rele_masa:ReleMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0,500.0)
+	contenedor_rele_masa.add_child(new_rele_masa)
 
 func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> Vector2:
 	randomize()
@@ -90,12 +113,15 @@ func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 func _on_base_destruida(base, posicion, num_explosiones: int = 5) -> void:
 	crear_explosiones(posicion, num_explosiones)
 	yield(get_tree().create_timer(0.5),"timeout")
+	numero_bases_enemigas -= 1
+	if numero_bases_enemigas == 0:
+		crear_rele()
 
 func crear_explosiones(posicion:Vector2, num_explosiones:int) -> void:
 	for _i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0,50.0)
-		add_child(new_explosion)
+		contenedor_explosiones.add_child(new_explosion)
 		yield(get_tree().create_timer(0.6), "timeout")
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
