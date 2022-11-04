@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Juego/UI/HUD/glassPanelz.png" type="Texture" id=1]
+[ext_resource path="res://Juego/KenneyFuture.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+outline_size = 1
+outline_color = Color( 0.0352941, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "mostrar"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.423529, 0.847059, 0.839216, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "mostrar_suavizado"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.423529, 0.847059, 0.839216, 0 ), Color( 0.423529, 0.847059, 0.839216, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "ocultar"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.423529, 0.847059, 0.839216, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "ocultar_suavizado"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.423529, 0.847059, 0.839216, 1 ), Color( 0.423529, 0.847059, 0.839216, 0 ) ]
+}
+
+[node name="ContenedorInformacion" type="NinePatchRect"]
+modulate = Color( 0.423529, 0.847059, 0.839216, 1 )
+anchor_top = 0.000925926
+anchor_right = 0.0744792
+anchor_bottom = 0.0453704
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.151899
+anchor_right = 0.848101
+anchor_bottom = 1.0
+margin_left = 1.90735e-06
+custom_fonts/font = SubResource( 1 )
+text = "EN ZONA DE 
+RECARGA"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ocultar"
+anims/mostrar = SubResource( 2 )
+anims/mostrar_suavizado = SubResource( 3 )
+anims/ocultar = SubResource( 4 )
+anims/ocultar_suavizado = SubResource( 5 )
+
+[node name="AutoOcultarTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AutoOcultarTimer" to="." method="_on_AutoOcultarTimer_timeout"]

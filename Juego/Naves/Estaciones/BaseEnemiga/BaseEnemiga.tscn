@@ -11,7 +11,8 @@
 [ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/AreaColision.gd" type="Script" id=9]
 [ext_resource path="res://Juego/Naves/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/PosicionesSpawn.gd" type="Script" id=11]
-[ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/RutaEnemigos.gd" type="Script" id=12]
+[ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/RutaEnemigos.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Naves/Estaciones/BaseEnemiga/RutaEnemigos2.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 34.6068
@@ -82,14 +83,10 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Curve2D" id=7]
-_data = {
-"points": PoolVector2Array( -117.468, -1.5874, 117.468, 1.5874, -1.52588e-05, -299.307, -26.9858, -11.1118, 26.9858, 11.1118, 118.351, -228.168, -50.7968, -38.0976, 50.7968, 38.0976, 275.022, -276.102, -23.811, -63.496, 23.811, 63.496, 205.188, -122.454, 1.5874, -76.1952, -1.5874, 76.1952, 299.786, 0.0956545, 15.1191, -45.3572, -15.1191, 45.3572, 205.188, 124.841, 27.7183, -45.3572, -27.7183, 45.3572, 282.585, 275.861, 80.6349, -7.55953, -80.6349, 7.55953, 101.361, 255.095, 80.6349, 0, -80.6349, 0, 0.229759, 299.946, 50.3968, 20.1587, -50.3968, -20.1587, -96.8522, 247.545, 30.2381, 37.7976, -30.2381, -37.7976, -283.739, 281.524, -17.6389, 50.3968, 17.6389, -50.3968, -219.556, 139.943, 5.4755, 59.5909, -5.4755, -59.5909, -299.568, -0.306862, -20.1587, 55.4365, 20.1587, -55.4365, -225.219, -116.791, -38.3493, 39.685, 38.3493, -39.685, -283.739, -269.699, -60.3212, 4.7622, 60.3212, -4.7622, -109.129, -231.655, -93.6567, 12.6992, 93.6567, -12.6992, -1.52588e-05, -299.727 )
-}
-
 [node name="BaseEnemiga" type="Node2D"]
 script = ExtResource( 2 )
 orbital = ExtResource( 10 )
+rutas = [ ExtResource( 12 ), ExtResource( 13 ) ]
 
 [node name="AreaColision" type="Area2D" parent="."]
 collision_layer = 32
@@ -165,10 +162,6 @@ position = Vector2( 0, 300 )
 position = Vector2( -300, 0 )
 
 [node name="Node2D" type="Node2D" parent="."]
-
-[node name="RutaEnemigos" type="Path2D" parent="."]
-curve = SubResource( 7 )
-script = ExtResource( 12 )
 
 [node name="TimerSpawnEnemigos" type="Timer" parent="."]
 
