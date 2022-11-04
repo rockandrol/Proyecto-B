@@ -19,10 +19,13 @@ var estado_cheat:int = ESTADO.INVENCIBLE
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var audio_danio:AudioStreamPlayer = $danio_sfx
 onready var canion:Canion = $Canion
+onready var barra_salud:ProgressBar = $SaludBar
 
 ## Metodos
 func _ready() -> void:
+	barra_salud.set_valores(hitpoints)
 	controlador_estados(estado_actual)
+	
 
 ##Metodos Custom
 func controlador_estados(nuevo_estado:int) -> void:
@@ -64,6 +67,8 @@ func recibir_danio(danio: float) -> void:
 	audio_danio.play()
 	if hitpoints <= 0.0:
 		destruir()
+	barra_salud.controlar_barra(hitpoints,true)
+	
 
 
 func _on_body_entered(body: Node) -> void:

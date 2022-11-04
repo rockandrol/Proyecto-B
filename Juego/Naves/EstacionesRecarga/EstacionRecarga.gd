@@ -13,8 +13,13 @@ var player_zona:bool = false
 onready var anim_esta:AnimationPlayer = $AnimationPlayer
 onready var carga_sfx:AudioStreamPlayer = $carga
 onready var vacio_sfx:AudioStreamPlayer = $vacio
+onready var barra_energia:ProgressBar = $EnergiaBar
 
 ## Metodos
+func _ready() -> void:
+	barra_energia.max_value = energia
+	barra_energia.value = energia
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
@@ -44,6 +49,7 @@ func controlar_energia() -> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		$vacio.play()
+	barra_energia.value = energia
 	print("Energia Estacion: ", energia)
 
 ## Señales Internas

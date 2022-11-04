@@ -107,8 +107,9 @@ func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> V
 	return Vector2 (rand_x, rand_y)
 
 func destruir_nivel() -> void:
+# warning-ignore:narrowing_conversion
 	crear_explosiones(
-		player.global_position + crear_posicion_aleatoria(300,300),
+		player.global_position + crear_posicion_aleatoria(300.0,300.0),
 		8.0
 	)
 	player.destruir()
