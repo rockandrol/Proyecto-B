@@ -55,7 +55,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=4]
 
-[node name="EstacionRecarga" type="Node2D"]
+[node name="EstacionRecarga" type="Node2D" groups=[
+"miniMap",
+]]
 script = ExtResource( 3 )
 
 [node name="AreaColision" type="Area2D" parent="."]

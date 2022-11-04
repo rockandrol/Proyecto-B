@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Juego/UI/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://ico.png" type="Texture" id=2]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacionEnergia.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/UI/MiniMapa/MiniMapa.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -145,6 +146,10 @@ margin_top = 0.0
 margin_right = 78.0
 margin_bottom = 28.0
 text = "ENERGIA ESCUDO"
+
+[node name="MiniMapa" parent="." instance=ExtResource( 5 )]
+margin_top = -210.439
+margin_bottom = -44.4387
 
 [editable path="ZonaRecargaText"]
 [editable path="MeteoritosText"]

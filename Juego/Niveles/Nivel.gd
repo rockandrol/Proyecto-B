@@ -108,8 +108,8 @@ func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> V
 
 func destruir_nivel() -> void:
 	crear_explosiones(
-		crear_posicion_aleatoria(250,250),
-		32
+		player.global_position + crear_posicion_aleatoria(300,300),
+		8.0
 	)
 	player.destruir()
 

@@ -8,6 +8,7 @@ export var numer_orbitales:int = 10
 export var intervalo_spawn:float = 0.8
 export(Array, PackedScene) var rutas
 
+
 ## Atributos Onready
 onready var impacto_sfx:AudioStreamPlayer2D = $Impacto_sfx
 onready var timer_spawner:Timer = $TimerSpawnEnemigos
@@ -59,6 +60,7 @@ func seleccionar_ruta() -> void:
 func destruir() -> void:
 	var posicion_base = $Sprites.global_position
 	Eventos.emit_signal("base_destruida", self, posicion_base)
+	Eventos.emit_signal("minimapa_objeto_destruido",self)
 	queue_free()
 
 func spawnear_orbital() -> void:
