@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Juego/Menu/MenuPausa.gd" type="Script" id=1]
+[ext_resource path="res://Juego/UI/Fuentes/Future.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 2 )
+
+[node name="MenuPausa" type="Control"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1912.0
+margin_bottom = 1064.0
+mouse_filter = 2
+color = Color( 0.24, 0.01, 0.01, 0.51 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -520.5
+margin_top = -182.5
+margin_right = 520.5
+margin_bottom = 182.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continuar" type="Button" parent="ColorRect/Label/VBoxContainer"]
+margin_right = 1041.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "CONTINUAR"
+
+[node name="MenuPrincipal" type="Button" parent="ColorRect/Label/VBoxContainer"]
+margin_top = 123.0
+margin_right = 1041.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "MENU PRINCIPAL"
+
+[node name="Salir" type="Button" parent="ColorRect/Label/VBoxContainer"]
+margin_top = 246.0
+margin_right = 1041.0
+margin_bottom = 365.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "SALIR"
+
+[connection signal="pressed" from="ColorRect/Label/VBoxContainer/Continuar" to="." method="_on_Continuar_pressed"]
+[connection signal="pressed" from="ColorRect/Label/VBoxContainer/MenuPrincipal" to="." method="_on_MenuPrincipal_pressed"]
+[connection signal="pressed" from="ColorRect/Label/VBoxContainer/Salir" to="." method="_on_Salir_pressed"]

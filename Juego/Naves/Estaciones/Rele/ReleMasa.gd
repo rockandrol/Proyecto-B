@@ -18,10 +18,6 @@ func atraer_player(body: Node) -> void:
 	)
 	$Tween.start()
 
-
-
-
-
 ## Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
@@ -32,9 +28,7 @@ func _on_DetectorPlayer_body_entered(body: Node) -> void:
 	$AnimationPlayer.play("super_activada")
 	body.desactivar_controles()
 	atraer_player(body)
-	
-
 
 
 func _on_Tween_tween_all_completed() -> void:
-	print("termina el nivel")
+	Eventos.emit_signal("nivel_completado")

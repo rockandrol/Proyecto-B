@@ -5,15 +5,15 @@ extends Node
 export var tiempo_transicion:float = 4.0
 export(float, -50.0, -20.0, 5.0) var volumen_apagado = -40.0
 
+## Atributos 
+var vol_original_musica_off:float = 0.0 
+
 ## Atributos Onready
 onready var lista_musica:Dictionary={"menu_principal":$MusicaMenuPrincipal} setget ,get_lista_musica
 onready var musica_nivel:AudioStreamPlayer = $MusicaNivel
 onready var musica_combate:AudioStreamPlayer = $MusicaCombate
 onready var tween_on:Tween = $TweenMusicaOn
 onready var tween_off:Tween = $TweenMusicaOff
-
-## Atributos 
-var vol_original_musica_off:float = 0.0 
 
 ## Setters y Getters
 func get_lista_musica() -> Dictionary:

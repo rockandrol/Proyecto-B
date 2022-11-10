@@ -1,11 +1,10 @@
+##Eventos
 extends Node
-
 
 # warning-ignore:unused_signal
 signal nivel_iniciado()
 # warning-ignore:unused_signal
 signal disparo(proyectil)
-
 # warning-ignore:unused_signal
 signal detector_zona_recarga(entrando)
 # warning-ignore:unused_signal
@@ -15,13 +14,21 @@ signal spawn_meteorito(posicion, direccion, tamanio)
 # warning-ignore:unused_signal
 signal meteorito_destruido(posicion)
 # warning-ignore:unused_signal
-signal nave_en_sector_peligro(centro_camara, tipo_peligro, num_peligros)
+signal nave_en_sector_peligro(centro_camara, tipo_peligro, numero_peligros)
 # warning-ignore:unused_signal
 signal base_destruida(base, posicion, explosiones)
 # warning-ignore:unused_signal
 signal spawn_orbital(orbital)
 # warning-ignore:unused_signal
 signal nivel_terminado()
+# warning-ignore:unused_signal
+signal nivel_completado()
+# warning-ignore:unused_signal
+signal mostrar_cursor()
+# warning-ignore:unused_signal
+signal ocultar_cursor()
+
+
 
 ###
 #HUD

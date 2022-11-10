@@ -1,11 +1,6 @@
 class_name Meteorito
 extends RigidBody2D
 
-## Atributos Onready
-onready var animacion:AnimationPlayer = $AnimationPlayer
-onready var audio_impacto:AudioStreamPlayer2D = $impacto_sfx
-
-
 ## Atributos Export
 export var vel_lineal_base: Vector2 = Vector2(300.0,300.0)
 export var vel_angular_base:float = 3.0
@@ -18,10 +13,13 @@ var esta_en_sector:bool = true setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
 
+## Atributos Onready
+onready var animacion:AnimationPlayer = $AnimationPlayer
+onready var audio_impacto:AudioStreamPlayer2D = $impacto_sfx
 
 ## Metodos
-func _ready() -> void:
-	angular_velocity = vel_angular_base
+#func _ready() -> void:
+#	angular_velocity = vel_angular_base
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	if esta_en_sector:
@@ -54,8 +52,7 @@ func crear(pos:Vector2, dir:Vector2, tamanio:float) -> void:
 	angular_velocity = vel_angular_base / tamanio * aleatorizar_velocidad() 
 	# Calcular Hitpoints
 	hitpoints = hitpoints_base * tamanio
-	# Solo Debug
-	
+
 
 ## Metodos Custom
 func aleatorizar_velocidad() -> float:

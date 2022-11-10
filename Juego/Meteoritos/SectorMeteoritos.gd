@@ -5,21 +5,28 @@ extends Node2D
 export var cantidad_meteoritos: int = 10
 export var intervalo_spawn:float = 1.2
 
-onready var timer:Timer = $SpawnTimer
-
 ## Atributos
 var spawners:Array
 
+## Atributos Onready
+onready var timer:Timer = $SpawnTimer
+
+
+
+
 ## Constructor
-func crear(pos: Vector2, meteoritos: int) -> void:
-	global_position = pos
+func crear(_pos: Vector2, meteoritos: int) -> void:
+	global_position = _pos
 	cantidad_meteoritos = meteoritos
+#	print("en la funcion crear(_pos,meteoritos) del sectorMeteoritos, la global_position esta en ", global_position, " que deberia ser igual a la position, q vale ", position, " y por las dudas leo el parametro pos ", _pos)
+
 
 ## Metodos
 func _ready() -> void:
 	timer.wait_time = intervalo_spawn
 	almacenar_spawners()
-
+	conectar_seniales_detectores()
+	
 ## Metodos Custom
 func conectar_seniales_detectores() -> void:
 	for detector in $DetectorFueraZona.get_children():

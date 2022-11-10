@@ -65,7 +65,6 @@ func set_is_casting(cast: bool) -> void:
 # collision point, whichever is closest.
 func cast_beam(delta: float) -> void:
 	if energia <= 0.0:
-		print("sin energia")
 		set_is_casting(false)
 		return
 	
@@ -92,7 +91,7 @@ func controlar_energia(consumo:float) -> void:
 	if energia > energia_original:
 		energia = energia_original
 	Eventos.emit_signal("cambio_energia_laser",energia_original,energia)
-	print("energia Laser: ", energia)
+
 
 func appear() -> void:
 	if tween.is_active():

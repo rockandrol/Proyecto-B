@@ -1,13 +1,15 @@
 ## HUD
 extends CanvasLayer
 
+export var info_nivel:String = ""
+
 ## Atributos Onready
 onready var info_zona_recarga:ContenedorInformacion = $ZonaRecargaText
 onready var info_meteoritos:ContenedorInformacion = $MeteoritosText
 onready var info_tiempo_restante:ContenedorInformacion = $TiempoText
 onready var barra_energia_laser:ContenedorInformacionEnergia = $LaserBar
 onready var barra_energia_escudo:ContenedorInformacionEnergia = $EscudoBar
-
+onready var info:ContenedorInformacion = $InfoNivel
 
 ## Metodos
 func _ready() -> void:
@@ -41,6 +43,11 @@ func fade_in() -> void:
 
 func fade_out() -> void:
 	$FadeCanvas/AnimationPlayer.play_backwards("fade_in")
+	info.mostrar()
+	info.modificar_texto(info_nivel)
+	yield(get_tree().create_timer(3),"timeout")
+	info.ocultar_suavizado()
+	
 
 func _on_detector_zona_recarga(en_zona: bool) -> void:
 	if en_zona:

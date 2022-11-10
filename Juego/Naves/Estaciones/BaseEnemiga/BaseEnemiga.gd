@@ -9,16 +9,16 @@ export var intervalo_spawn:float = 0.8
 export(Array, PackedScene) var rutas
 export var siempre_visible:bool = true
 
+## Atributos
+var esta_destruida:bool = false
+var posicion_spawner:Vector2 = Vector2.ZERO
+var ruta_selecccionada:Path2D
+
 ## Atributos Onready
 onready var impacto_sfx:AudioStreamPlayer2D = $Impacto_sfx
 onready var timer_spawner:Timer = $TimerSpawnEnemigos
 onready var barra_salud:ProgressBar = $SaludBar
 
-
-## Atributos
-var esta_destruida:bool = false
-var posicion_spawner:Vector2 = Vector2.ZERO
-var ruta_selecccionada:Path2D
 
 ## Metodos
 func _ready() -> void:
@@ -27,18 +27,12 @@ func _ready() -> void:
 	timer_spawner.wait_time = intervalo_spawn
 	$AnimationPlayer.play(elegir_animacion_aleatoria())
 	seleccionar_ruta()
-	
 
 func _process(_delta: float) -> void:
 	var player_objetivo:Player = DatosJuego.get_player_actual()
 	if  not player_objetivo:
 		return
-	var dir_player:Vector2 =  player_objetivo.global_position - global_position
-	var angulo_player:float = rad2deg(dir_player.angle())
-	print(angulo_player)
-	
-	
-	
+
 
 ## Metodos Custom
 func elegir_animacion_aleatoria() -> String:
@@ -98,7 +92,7 @@ func deteccion_cuadrante() -> Vector2:
 		ruta_selecccionada.rotation_degrees = 0.0
 		return $PosicionesSpawn/Oeste.position
 	elif abs(angulo_player) > 45.0 and abs(angulo_player) <= 135:
-		# por abajo
+		# por abajo o arriba 
 		if sign(angulo_player) > 0:
 			ruta_selecccionada.rotation_degrees = 270.0
 			return $PosicionesSpawn/Sur.position
@@ -122,7 +116,7 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 #	var new_orbital:EnemigoOrbital = orbital.instance()
 #	new_orbital.crear(
 #		global_position + $PosicionesSpawn/Norte.global_position,
-#		selfa
+#		self, $
 #	)
 #	Eventos.emit_signal("spawn_orbital",new_orbital)
 

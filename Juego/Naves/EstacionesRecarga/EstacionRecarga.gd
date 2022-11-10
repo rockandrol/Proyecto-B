@@ -50,7 +50,7 @@ func controlar_energia() -> void:
 	if energia <= 0.0:
 		$vacio.play()
 	barra_energia.value = energia
-	print("Energia Estacion: ", energia)
+
 
 ## Señales Internas
 func _on_AreaColision_body_entered(body: Node) -> void:

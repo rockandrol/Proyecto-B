@@ -3,10 +3,10 @@
 [ext_resource path="res://Juego/Meteoritos/meteoritoSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.gd" type="Script" id=2]
 [ext_resource path="res://Juego/SFX/escudo.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Juego/Meteoritos/SectorMeteoritos/Future.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Juego/UI/Fuentes/Future.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.5791, 549.583 )
+extents = Vector2( 10.5791, 518.795 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 971.794, 11.6758 )
@@ -105,7 +105,6 @@ tracks/1/keys = {
 }
 
 [node name="SectorMeteoritos" type="Node2D"]
-position = Vector2( -960.879, -532.765 )
 script = ExtResource( 2 )
 intervalo_spawn = 2.0
 
@@ -115,9 +114,6 @@ intervalo_spawn = 2.0
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
 collision_mask = 3
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeIzquierdo"]
 position = Vector2( -960, 0 )
@@ -127,9 +123,6 @@ shape = SubResource( 1 )
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
 collision_mask = 3
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeDerecho"]
 position = Vector2( 960, 0 )
@@ -138,7 +131,6 @@ shape = SubResource( 1 )
 [node name="BordeSuperior" type="StaticBody2D" parent="BordeNavePlayer"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -150,7 +142,6 @@ shape = SubResource( 2 )
 [node name="BordeInferior" type="StaticBody2D" parent="BordeNavePlayer"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -164,7 +155,7 @@ shape = SubResource( 2 )
 [node name="DetectorIzquierda" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 5
+collision_mask = 4
 __meta__ = {
 "_edit_group_": true
 }
@@ -177,7 +168,7 @@ shape = SubResource( 3 )
 [node name="DetectorDerecha" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 5
+collision_mask = 4
 __meta__ = {
 "_edit_group_": true
 }
@@ -190,7 +181,7 @@ shape = SubResource( 3 )
 [node name="DetectorSuperior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 5
+collision_mask = 4
 __meta__ = {
 "_edit_group_": true
 }
@@ -203,7 +194,7 @@ shape = SubResource( 4 )
 [node name="DetectorInferior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 976.896, 533.397 )
 collision_layer = 0
-collision_mask = 5
+collision_mask = 4
 __meta__ = {
 "_edit_group_": true
 }
@@ -280,17 +271,19 @@ direccion = Vector2( 1, 2 )
 rango_tamanio_meteorito = Vector2( 1.5, 2.2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 1939.07, 1082.19 )
+position = Vector2( 960, 540 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 modulate = Color( 0.96, 0.04, 0.04, 0.53 )
 margin_top = -12.0
 margin_right = 1936.0
 margin_bottom = 1092.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

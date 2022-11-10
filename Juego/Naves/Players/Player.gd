@@ -42,6 +42,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		laser.set_is_casting(false)
 	
 	#Estela y audio motor
+
 	if event.is_action_pressed("mover_adelante"):
 		estela.set_max_points(estela_maxima)
 		estela.set_emitting(true)
@@ -50,7 +51,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("mover_atras"):
 		estela.set_max_points(0)
 		audio_motor.sonido_on()
-	
 	if event.is_action_released("mover_adelante")	or event.is_action_released("mover_atras"):
 			audio_motor.sonido_off()
 
@@ -74,9 +74,11 @@ func player_input() -> void:
 	empuje = Vector2.ZERO
 	if Input.is_action_pressed("mover_adelante"):
 		empuje = Vector2(potencia_motor,0)
+		audio_motor.sonido_on()
 		
 	elif Input.is_action_pressed("mover_atras"):
 		empuje = Vector2(-potencia_motor,0)
+		audio_motor.sonido_on()
 	
 	dir_rotacion=0
 	if Input.is_action_pressed("giro_antihorario"):

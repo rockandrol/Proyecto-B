@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Juego/Niveles/Fondos/StarField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Niveles/Fondos/FondoEstrellas.gd" type="Script" id=2]
+
+[node name="StarFieldBackground" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+script = ExtResource( 2 )
+color_fondo = Color( 0.0431373, 0.00392157, 0.0784314, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.37842
+margin_top = -1.18921
+margin_right = 2.37842
+margin_bottom = -1.18921
+mouse_filter = 2
+color = Color( 0.0431373, 0.00392157, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EstrellasCercanas" type="ParallaxLayer" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+motion_scale = Vector2( 0.03, 0.03 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="EstrellasCercanas" instance=ExtResource( 1 )]
+modulate = Color( 0.772549, 0.909804, 0.921569, 1 )
+amount = 9
+lifetime = 8.0
+
+[node name="EstrellasMedias" type="ParallaxLayer" parent="."]
+modulate = Color( 1, 1, 1, 0.705882 )
+motion_scale = Vector2( 0.02, 0.02 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="EstrellasMedias" instance=ExtResource( 1 )]
+modulate = Color( 0.933594, 0.879803, 0.71843, 1 )
+amount = 7
+lifetime = 3.0
+
+[node name="EstrellasLejanas" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.01, 0.01 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="EstrellasLejanas" instance=ExtResource( 1 )]
+modulate = Color( 0.592157, 0.952941, 0.552941, 1 )
+amount = 4
+lifetime = 1.0

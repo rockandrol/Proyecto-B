@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/UI/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://ico.png" type="Texture" id=2]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacionEnergia.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/UI/MiniMapa/MiniMapa.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/UI/Fuentes/KenneyFuture.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -26,12 +27,19 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=3]
+size = 15
+outline_size = 1
+outline_color = Color( 0.0352941, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 49.6491, 1044.83 ],
 "_edit_vertical_guides_": [ 51.7343, 1903.03 ]
 }
+info_nivel = "Nivel 1: INTRODUCCION"
 
 [node name="FadeCanvas" type="CanvasLayer" parent="."]
 
@@ -130,6 +138,7 @@ margin_left = -72.5
 margin_top = 0.0
 margin_right = 72.5
 margin_bottom = 28.0
+custom_fonts/font = SubResource( 3 )
 text = "ENERGIA LASER"
 
 [node name="EscudoBar" parent="." groups=[
@@ -145,14 +154,39 @@ margin_left = -78.0
 margin_top = 0.0
 margin_right = 78.0
 margin_bottom = 28.0
+custom_fonts/font = SubResource( 3 )
 text = "ENERGIA ESCUDO"
 
 [node name="MiniMapa" parent="." instance=ExtResource( 5 )]
 margin_top = -210.439
 margin_bottom = -44.4387
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="InfoNivel" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -186.5
+margin_top = 51.9137
+margin_right = 186.5
+margin_bottom = 99.9137
+
+[node name="Label" parent="InfoNivel" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -24.0
+margin_right = 58.0
+margin_bottom = 24.0
+text = ""
+
 [editable path="ZonaRecargaText"]
 [editable path="MeteoritosText"]
 [editable path="TiempoText"]
 [editable path="LaserBar"]
 [editable path="EscudoBar"]
+[editable path="InfoNivel"]

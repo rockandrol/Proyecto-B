@@ -33,18 +33,15 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.SPAWN:
 			colisionador.set_deferred("disable", true)
 			canion.set_puede_disparar(false)
-			print("aca estoy perro")
 		ESTADO.VIVO:
 			colisionador.set_deferred("disable", false)
 			canion.set_puede_disparar(true)
-			print("muevo la cola")
 		ESTADO.INVENCIBLE:
 			colisionador.set_deferred("disable", true)
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disable", false)
 			canion.set_puede_disparar(false)
 			Eventos.emit_signal("nave_destruida", self, global_position,numExplosiones)
-			print("tire la pata")
 			queue_free()
 		_:
 			print("error de estado")
