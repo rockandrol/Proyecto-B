@@ -18,14 +18,14 @@ onready var timer:Timer = $SpawnTimer
 func crear(_pos: Vector2, meteoritos: int) -> void:
 	global_position = _pos
 	cantidad_meteoritos = meteoritos
-#	print("en la funcion crear(_pos,meteoritos) del sectorMeteoritos, la global_position esta en ", global_position, " que deberia ser igual a la position, q vale ", position, " y por las dudas leo el parametro pos ", _pos)
+	print("SECTOR METEORITOS en la funcion crear(_pos,meteoritos) del sectorMeteoritos, la global_position esta en  y por las dudas leo el parametro pos ", _pos)
 
 
 ## Metodos
 func _ready() -> void:
 	timer.wait_time = intervalo_spawn
 	almacenar_spawners()
-	conectar_seniales_detectores()
+	
 	
 ## Metodos Custom
 func conectar_seniales_detectores() -> void:

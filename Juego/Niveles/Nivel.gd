@@ -8,9 +8,9 @@ export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
-export var tiempo_transicion_camara:float = 1.0
+export var tiempo_transicion_camara:float = 0.2
 export var tiempo_limite:int = 10
-export var musica_nive:AudioStream = null
+export var musica_nivel:AudioStream = null
 export var musica_combate:AudioStream = null
 export(String,FILE,"*.tscn") var prox_nivel = ""
 
@@ -41,7 +41,7 @@ func _ready() -> void:
 	Eventos.emit_signal("actualizar_tiempo",tiempo_limite)
 	actualizador_timer.start()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	MusicaJuego.set_streams(musica_nive, musica_combate)
+	MusicaJuego.set_streams(musica_nivel, musica_combate)
 	MusicaJuego.play_musica_nivel()
 	conectar_seniales()
 	crear_contenedores()
@@ -137,8 +137,8 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 		transicion_camaras(
 			posicion,
 			posicion + crear_posicion_aleatoria(-200.0, 200.0),
-			camara_nivel
-			
+			camara_nivel,
+			tiempo_transicion_camara
 		)
 		$RestarTimer.start()
 	crear_explosiones(posicion, num_explosiones)	
@@ -181,6 +181,7 @@ func _on_meteorito_destruido(pos: Vector2) -> void:
 func _on_nave_en_sector_peligro(centro_camara:Vector2, tipo_peligro:String, numero_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_camara, numero_peligros)
+		print(" NIVEL en la funcion _on_nave_en_sector_peligor el centro de camara es ", centro_camara)
 		Eventos.emit_signal("cambio_numero_meteoritos",numero_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(numero_peligros)
@@ -197,14 +198,17 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	meteoritos_totales = numero_peligros
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
-	centro_camara = centro.global_position
+	camara_player.global_position = camara_nivel.global_position 
+	centro_camara = camara_player.global_position  
 	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
 	camara_nivel.zoom = camara_player.zoom
 	camara_nivel.devolver_zoom_original()
+	print("NIVEL dentro de la funcion crear_sector_meteoriotos la camara nivel esta en ", camara_nivel.global_position, " el centro_camara en ", centro_camara, " la camara_player ", camara_player.global_position)
 	transicion_camaras(
 		camara_player.global_position,
 		camara_nivel.global_position,
-		camara_nivel
+		camara_nivel,
+		tiempo_transicion_camara
 	)
 	
 		
@@ -222,10 +226,11 @@ func controlar_meteoritos_restantes() -> void:
 		transicion_camaras(
 			camara_nivel.global_position,
 			camara_player.global_position,
-			camara_player
+			camara_player,
+			tiempo_transicion_camara
 		)
 
-func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D) -> void:
+func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D, tiempo_transicion:float) -> void:
 	$TweenCamara.interpolate_property(
 		camara_actual,
 		"global_position",
@@ -233,8 +238,9 @@ func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D) 
 		hasta,
 		tiempo_transicion_camara,
 		Tween.TRANS_LINEAR,
-		Tween.EASE_IN_OUT
-	)
+		Tween.EASE_IN_OUT,
+		tiempo_transicion
+		)
 	camara_actual.current = true
 	$TweenCamara.start()
 	
@@ -242,7 +248,7 @@ func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D) 
 # warning-ignore:unused_argument
 func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
 	if object.name == "CameraPlayer":
-		object.global_position = camara_nivel.global_position
+		object.global_position = camara_player.global_position
 
 
 func _on_RestarTimer_timeout() -> void:

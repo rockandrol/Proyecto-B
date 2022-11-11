@@ -8,7 +8,7 @@
 prox_nivel = "res://Juego/Niveles/Niveles/Nivel2.tscn"
 
 [node name="SectorPeligro" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 3 )]
-position = Vector2( 4.4563, -549.185 )
+position = Vector2( 1536.25, -374.963 )
 tipo_peligro = "Meteorito"
 numero_peligros = 2
 
@@ -20,6 +20,9 @@ numero_peligros = 5
 
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1073.21, 395.113 )
+
+[node name="CameraNivel" parent="." index="7"]
+position = Vector2( 0, 0 )
 
 [editable path="Player"]
 [editable path="Player/Canion"]

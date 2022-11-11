@@ -20,3 +20,4 @@ func controlar_zoom(mod_zoom: float) -> void:
 	var zoom_y = clamp(zoom.y + mod_zoom, zoom_minimo, zoom_maximo)
 	zoom_suavisado(zoom_x,zoom_y,0.15)
 
+

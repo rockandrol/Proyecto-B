@@ -111,49 +111,49 @@ intervalo_spawn = 2.0
 [node name="BordeNavePlayer" type="Node" parent="."]
 
 [node name="BordeIzquierdo" type="StaticBody2D" parent="BordeNavePlayer"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( -960, 0 )
 collision_layer = 0
-collision_mask = 3
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeIzquierdo"]
-position = Vector2( -960, 0 )
 shape = SubResource( 1 )
 
 [node name="BordeDerecho" type="StaticBody2D" parent="BordeNavePlayer"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 960, 0 )
 collision_layer = 0
-collision_mask = 3
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeDerecho"]
-position = Vector2( 960, 0 )
 shape = SubResource( 1 )
 
 [node name="BordeSuperior" type="StaticBody2D" parent="BordeNavePlayer"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 0, -540 )
 collision_layer = 0
 __meta__ = {
-"_edit_group_": true
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeSuperior"]
-position = Vector2( 0, -540 )
 shape = SubResource( 2 )
 
 [node name="BordeInferior" type="StaticBody2D" parent="BordeNavePlayer"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 0, 540 )
 collision_layer = 0
 __meta__ = {
-"_edit_group_": true
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordeNavePlayer/BordeInferior"]
-position = Vector2( 0, 540 )
 shape = SubResource( 2 )
 
 [node name="DetectorFueraZona" type="Node" parent="."]
 
 [node name="DetectorIzquierda" type="Area2D" parent="DetectorFueraZona"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( -1400, 0 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -162,11 +162,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorIzquierda"]
 modulate = Color( 0.298039, 0.694118, 0.0235294, 1 )
-position = Vector2( -1400, 0 )
 shape = SubResource( 3 )
 
 [node name="DetectorDerecha" type="Area2D" parent="DetectorFueraZona"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 1400, 0 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -175,11 +174,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorDerecha"]
 modulate = Color( 0.298039, 0.694118, 0.0235294, 1 )
-position = Vector2( 1400, 0 )
 shape = SubResource( 3 )
 
 [node name="DetectorSuperior" type="Area2D" parent="DetectorFueraZona"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 0, -900 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -188,11 +186,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorSuperior"]
 modulate = Color( 0.298039, 0.694118, 0.0235294, 1 )
-position = Vector2( 0, -900 )
 shape = SubResource( 4 )
 
 [node name="DetectorInferior" type="Area2D" parent="DetectorFueraZona"]
-position = Vector2( 976.896, 533.397 )
+position = Vector2( 0, 900 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -201,77 +198,75 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorInferior"]
 modulate = Color( 0.298039, 0.694118, 0.0235294, 1 )
-position = Vector2( 0, 900 )
 shape = SubResource( 4 )
 
 [node name="Spawners" type="Node" parent="."]
 
 [node name="meteoritoSpawner" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 401.019, -186.279 )
+position = Vector2( -575.881, -720.024 )
 
 [node name="meteoritoSpawner2" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 976.896, -186.279 )
+position = Vector2( -0.00402832, -720.024 )
 direccion = Vector2( 0, 1 )
 
 [node name="meteoritoSpawner3" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1551.79, -186.279 )
+position = Vector2( 574.89, -720.024 )
 direccion = Vector2( -1, 1 )
 
 [node name="meteoritoSpawner4" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2126.9, -186.279 )
+position = Vector2( 1150, -720.024 )
 direccion = Vector2( -2, 1 )
 
 [node name="meteoritoSpawner5" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2126.9, 173.526 )
+position = Vector2( 1150, -360.218 )
 direccion = Vector2( -1, 1 )
 
 [node name="meteoritoSpawner6" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2126.9, 533.744 )
+position = Vector2( 1150, -0.000549316 )
 direccion = Vector2( -575, 720 )
 rango_tamanio_meteorito = Vector2( 1.5, 2.2 )
 
 [node name="meteoritoSpawner7" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2126.9, 893.725 )
+position = Vector2( 1150, 359.98 )
 direccion = Vector2( -1, -1 )
 
 [node name="meteoritoSpawner8" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 2126.9, 1253.37 )
+position = Vector2( 1150, 719.625 )
 direccion = Vector2( -2, -1 )
 
 [node name="meteoritoSpawner9" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 1551.79, 1254.89 )
+position = Vector2( 574.89, 721.145 )
 direccion = Vector2( -1, -1 )
 
 [node name="meteoritoSpawner10" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 976.896, 1254.89 )
+position = Vector2( -0.00402832, 721.145 )
 direccion = Vector2( 0, -1 )
 
 [node name="meteoritoSpawner11" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( 401.019, 1253.37 )
+position = Vector2( -575.881, 719.625 )
 direccion = Vector2( 1, -1 )
 
 [node name="meteoritoSpawner12" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -171.768, 1254.89 )
+position = Vector2( -1148.67, 721.145 )
 direccion = Vector2( 2, -1 )
 
 [node name="meteoritoSpawner13" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -172.652, 893.725 )
+position = Vector2( -1149.55, 359.98 )
 direccion = Vector2( 1, -1 )
 
 [node name="meteoritoSpawner14" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -172.881, 533.744 )
+position = Vector2( -1149.78, -0.000549316 )
 direccion = Vector2( 1, 0 )
 
 [node name="meteoritoSpawner15" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -172.538, 173.494 )
+position = Vector2( -1149.44, -360.25 )
 
 [node name="meteoritoSpawner16" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -172.817, -186.279 )
+position = Vector2( -1149.72, -720.024 )
 direccion = Vector2( 1, 2 )
 rango_tamanio_meteorito = Vector2( 1.5, 2.2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 960, 540 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
