@@ -181,7 +181,7 @@ func _on_meteorito_destruido(pos: Vector2) -> void:
 func _on_nave_en_sector_peligro(centro_camara:Vector2, tipo_peligro:String, numero_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_camara, numero_peligros)
-		print(" NIVEL en la funcion _on_nave_en_sector_peligor el centro de camara es ", centro_camara)
+	#	print(" NIVEL en la funcion _on_nave_en_sector_peligor el centro de camara es ", centro_camara)
 		Eventos.emit_signal("cambio_numero_meteoritos",numero_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(numero_peligros)
@@ -198,12 +198,11 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	meteoritos_totales = numero_peligros
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
-	camara_player.global_position = camara_nivel.global_position 
-	centro_camara = camara_player.global_position  
+	camara_nivel.global_position = centro_camara
 	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
 	camara_nivel.zoom = camara_player.zoom
 	camara_nivel.devolver_zoom_original()
-	print("NIVEL dentro de la funcion crear_sector_meteoriotos la camara nivel esta en ", camara_nivel.global_position, " el centro_camara en ", centro_camara, " la camara_player ", camara_player.global_position)
+	#print("NIVEL dentro de la funcion crear_sector_meteoriotos la camara nivel esta en ", camara_nivel.global_position, " el centro_camara en ", centro_camara, " la camara_player ", camara_player.global_position)
 	transicion_camaras(
 		camara_player.global_position,
 		camara_nivel.global_position,
