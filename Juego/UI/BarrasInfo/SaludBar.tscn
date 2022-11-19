@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Juego/UI/BarrasInfo/SaludBar.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.92549, 0.894118, 0.388235, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.137255, 0.4, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="SaludBar" type="ProgressBar"]
+margin_left = -80.0
+margin_top = 56.0
+margin_right = 32.0
+margin_bottom = 72.0
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+step = 0.1
+value = 80.0
+rounded = true
+percent_visible = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TweenVisibilidad" type="Tween" parent="."]
+
+[connection signal="tween_all_completed" from="TweenVisibilidad" to="." method="_on_TweenVisibilidad_tween_all_completed"]

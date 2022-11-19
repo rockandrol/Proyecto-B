@@ -9,7 +9,7 @@ extends Node2D
 export var proyectil:PackedScene = null
 export var cadencia_disparo:float = 0.8
 export var velocidad_proyectil:int = 100
-export var danio_proyectil:int = 1
+export var danio_proyectil:float = 1.0
 
 ## Atributos onready
 onready var timer_enfriamiento:Timer = $TimerEnfriamiento
@@ -36,7 +36,7 @@ func _ready() -> void:
 	timer_enfriamiento.wait_time = cadencia_disparo
 
 func _process(_delta: float) -> void:
-	if esta_disparando and esta_enfriado:
+	if esta_disparando and esta_enfriado and puede_disparar:
 		disparar()	
 
 func almacenar_puntos_disparo() -> void:
@@ -50,7 +50,7 @@ func disparar() -> void:
 	timer_enfriamiento.start()
 	
 	for punto_disparo in puntos_disparo:
-		var new_proyectil:ProyectilRed = proyectil.instance()
+		var new_proyectil = proyectil.instance() 
 		new_proyectil.crear(
 			punto_disparo.global_position,
 			get_owner().rotation,
@@ -58,6 +58,8 @@ func disparar() -> void:
 			danio_proyectil
 		)
 		Eventos.emit_signal("disparo", new_proyectil)
+		
+			
 
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true

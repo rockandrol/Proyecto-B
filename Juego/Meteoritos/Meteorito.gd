@@ -1,17 +1,13 @@
 class_name Meteorito
 extends RigidBody2D
 
-## Atributos Onready
-onready var animacion:AnimationPlayer = $AnimationPlayer
-onready var audio_impacto:AudioStreamPlayer2D = $impacto_sfx
-
-
-## Atributos Export
+## Atributos Export ############################################################
 export var vel_lineal_base: Vector2 = Vector2(300.0,300.0)
 export var vel_angular_base:float = 3.0
 export var hitpoints_base:float = 30.0
 
-## Atributos
+
+## Atributos ###################################################################
 var hitpoints:float
 var esta_destruido:bool = false
 var esta_en_sector:bool = true setget set_esta_en_sector 
@@ -19,10 +15,12 @@ var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
 
 
-## Metodos
-func _ready() -> void:
-	angular_velocity = vel_angular_base
+## Atributos Onready ###########################################################
+onready var animacion:AnimationPlayer = $AnimationPlayer
+onready var audio_impacto:AudioStreamPlayer2D = $impacto_sfx
 
+
+## Metodos #####################################################################
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	if esta_en_sector:
 		return
@@ -32,11 +30,13 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	state.set_transform(mi_trasform)
 	esta_en_sector = true
 
-## Setters y Getters
+
+## Setters y Getters ###########################################################
 func set_esta_en_sector(valor: bool) -> void:
 	esta_en_sector = valor
 
-## Constructor
+
+## Constructor #################################################################
 func crear(pos:Vector2, dir:Vector2, tamanio:float) -> void:
 	position = pos
 	pos_spawn_original = pos
@@ -54,10 +54,9 @@ func crear(pos:Vector2, dir:Vector2, tamanio:float) -> void:
 	angular_velocity = vel_angular_base / tamanio * aleatorizar_velocidad() 
 	# Calcular Hitpoints
 	hitpoints = hitpoints_base * tamanio
-	# Solo Debug
-	
 
-## Metodos Custom
+
+## Metodos Custom ##############################################################
 func aleatorizar_velocidad() -> float:
 	randomize()
 	return rand_range(1.5,2.1)
@@ -66,6 +65,7 @@ func recibir_danio(danio: float) -> void:
 	hitpoints -= danio
 	audio_impacto.play()
 	animacion.play("impacto")
+	
 	if hitpoints <= 0.0 and not esta_destruido:
 		esta_destruido = true
 		destruir()

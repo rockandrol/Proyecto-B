@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/agujero.ogg-7418a54c33ff03866dc6a4b62f65776d.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/Estaciones/Rele/agujero.ogg"
+dest_files=[ "res://.import/agujero.ogg-7418a54c33ff03866dc6a4b62f65776d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

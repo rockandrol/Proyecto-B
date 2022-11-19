@@ -51,6 +51,7 @@ func set_is_casting(cast: bool) -> void:
 		fill.points[1] = cast_to
 		appear()
 	else:
+		Eventos.emit_signal("ocultar_energia_laser")
 		laser_sfx.stop()
 		collision_particles.emitting = false
 		disappear()
@@ -64,7 +65,6 @@ func set_is_casting(cast: bool) -> void:
 # collision point, whichever is closest.
 func cast_beam(delta: float) -> void:
 	if energia <= 0.0:
-		print("sin energia")
 		set_is_casting(false)
 		return
 	
@@ -80,7 +80,7 @@ func cast_beam(delta: float) -> void:
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = cast_point
 		if get_collider().has_method("recibir_danio"):
-			get_collider().recibir_danio(radio_danio * delta)
+			get_collider().recibir_danio(radio_danio * 0.625)
 
 	fill.points[1] = cast_point
 	beam_particles.position = cast_point * 0.5
@@ -90,7 +90,8 @@ func controlar_energia(consumo:float) -> void:
 	energia += consumo
 	if energia > energia_original:
 		energia = energia_original
-	print("energia Laser: ", energia)
+	Eventos.emit_signal("cambio_energia_laser",energia_original,energia)
+
 
 func appear() -> void:
 	if tween.is_active():

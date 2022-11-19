@@ -233,7 +233,8 @@ tracks/8/keys = {
 }
 
 [node name="Explosion" type="Node2D"]
-modulate = Color( 1, 0.960784, 0.8, 0.25098 )
+modulate = Color( 0.980392, 0.94902, 0.929412, 0.2 )
+self_modulate = Color( 0.403922, 0.470588, 0.843137, 1 )
 z_index = 1
 z_as_relative = false
 
