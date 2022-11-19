@@ -41,7 +41,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -69,10 +69,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/path = NodePath("AreaColision:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -82,6 +82,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AreaAtraccion/Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.529412, 0.709804, 0.878431, 0.121569 ), Color( 0.529412, 0.709804, 0.878431, 0.211765 ), Color( 0.529412, 0.709804, 0.878431, 0.121569 ), Color( 0.529412, 0.709804, 0.878431, 0.309804 ), Color( 0.53, 0.71, 0.88, 0.13 ), Color( 0.53, 0.71, 0.88, 0.31 ) ]
 }
 
 [sub_resource type="StyleBoxFlat" id=7]
@@ -106,11 +130,12 @@ border_blend = true
 "miniMap",
 ]]
 script = ExtResource( 2 )
+hitpoints = 50.0
 orbital = ExtResource( 10 )
 rutas = [ ExtResource( 12 ), ExtResource( 13 ) ]
 
 [node name="Sprites" type="Node2D" parent="."]
-modulate = Color( 0.67, 0.76, 0.78, 0.88 )
+modulate = Color( 0.670588, 0.760784, 0.780392, 0.878431 )
 
 [node name="Sprite3" type="Sprite" parent="Sprites"]
 position = Vector2( -55.238, -54 )
@@ -154,7 +179,7 @@ shape = SubResource( 3 )
 visible = false
 
 [node name="Sprite" parent="AreaAtraccion" index="1"]
-visible = false
+modulate = Color( 0.529412, 0.709804, 0.878431, 0.121569 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "giro_horario"

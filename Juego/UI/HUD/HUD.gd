@@ -1,23 +1,26 @@
 ## HUD
 extends CanvasLayer
 
+## Atributos Export ############################################################
 export var info_nivel:String = ""
 
-## Atributos Onready
+
+## Atributos Onready ###########################################################
 onready var info_zona_recarga:ContenedorInformacion = $ZonaRecargaText
 onready var info_meteoritos:ContenedorInformacion = $MeteoritosText
 onready var info_tiempo_restante:ContenedorInformacion = $TiempoText
 onready var barra_energia_laser:ContenedorInformacionEnergia = $LaserBar
 onready var barra_energia_escudo:ContenedorInformacionEnergia = $EscudoBar
-onready var info:ContenedorInformacion = $InfoNivel
+onready var barra_energia_turbo:ContenedorInformacionEnergia = $TurboBar
+onready var info:ContenedorInformacion = $InfoNivel 
 
-## Metodos
+
+## Metodos #####################################################################
 func _ready() -> void:
 	conectar_seniales()
 
 
-
-## Metodos Custom
+## Metodos Custom ##############################################################
 func conectar_seniales() -> void:
 # warning-ignore:return_value_discarded
 	Eventos.connect("nivel_iniciado", self, "fade_out")
@@ -37,6 +40,11 @@ func conectar_seniales() -> void:
 	Eventos.connect("cambio_energia_escudo",self,"_on_actualizar_energia_escudo")
 # warning-ignore:return_value_discarded
 	Eventos.connect("ocultar_energia_escudo",barra_energia_escudo,"ocultar")
+# warning-ignore:return_value_discarded
+	Eventos.connect("cambio_energia_turbo",self,"_on_actualizar_energia_turbo")
+# warning-ignore:return_value_discarded
+	Eventos.connect("ocultar_energia_turbo",barra_energia_turbo,"ocultar")
+
 
 func fade_in() -> void:
 	$FadeCanvas/AnimationPlayer.play("fade_in")
@@ -47,8 +55,9 @@ func fade_out() -> void:
 	info.modificar_texto(info_nivel)
 	yield(get_tree().create_timer(3),"timeout")
 	info.ocultar_suavizado()
-	
 
+
+## Señales Internas ############################################################
 func _on_detector_zona_recarga(en_zona: bool) -> void:
 	if en_zona:
 		info_zona_recarga.mostrar_suavizado()
@@ -80,6 +89,10 @@ func _on_actualizar_energia_escudo(energia_max:float, energia_actual:float) -> v
 	barra_energia_escudo.mostrar()
 	barra_energia_escudo.actualizar_energia(energia_max,energia_actual)
 
+func _on_actualizar_energia_turbo(energia_max:float, energia_actual:float) -> void:
+	barra_energia_turbo.mostrar()
+	barra_energia_turbo.actualizar_energia(energia_max,energia_actual)
+	
 func _on_nave_destruida(nave:NaveBase, _posicion, _explosiones) -> void:
 	if nave is Player:
 		get_tree().call_group("contenedor_info", "set_esta_activo", false)

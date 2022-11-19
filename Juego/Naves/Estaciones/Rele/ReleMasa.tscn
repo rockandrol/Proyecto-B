@@ -239,17 +239,15 @@ script = ExtResource( 3 )
 
 [node name="Sprite3" type="Sprite" parent="Node2D"]
 modulate = Color( 0.979492, 0.344353, 0.344353, 0.827451 )
-rotation = -25.1327
+scale = Vector2( 2, 1 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="Node2D"]
 modulate = Color( 0.0901961, 0.117647, 0.317647, 0.917647 )
-rotation = -6.28319
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
-modulate = Color( 0.866667, 0.737255, 0.996078, 1 )
-rotation = 12.5664
+modulate = Color( 0.866667, 0.737255, 0.996078, 0.8 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -271,7 +269,6 @@ bus = "SFX"
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPlayer"]
-visible = false
 shape = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,20 +1,23 @@
 class_name ContenedorInformacion
 extends NinePatchRect
 
-## Atributos 
+## Atributos  ##################################################################
 var esta_activo:bool = true setget set_esta_activo
 var auto_ocultar:bool 
 
-## Atributos Onready
+
+## Atributos Onready ###########################################################
 onready var texto_contenedor:Label = $Label
 onready var auto_ocultar_timer:Timer = $AutoOcultarTimer 
 onready var animaciones:AnimationPlayer = $AnimationPlayer
 
-## Setters y Getters
+
+## Setters y Getters ###########################################################
 func set_esta_activo(valor:bool) -> void:
 	esta_activo = valor
 
-## Metodos
+
+## Metodos Custom ##############################################################
 func mostrar() -> void:
 	if esta_activo:
 		animaciones.play("mostrar")

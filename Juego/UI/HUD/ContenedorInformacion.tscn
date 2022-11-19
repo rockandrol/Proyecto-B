@@ -4,7 +4,7 @@
 [ext_resource path="res://Juego/UI/Fuentes/Future.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=2]
@@ -90,7 +90,7 @@ anchor_left = 0.151899
 anchor_right = 0.848101
 anchor_bottom = 1.0
 margin_left = 1.90735e-06
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "EN ZONA DE 
 RECARGA"
 align = 1

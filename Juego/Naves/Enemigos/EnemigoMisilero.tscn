@@ -1,0 +1,186 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Juego/UI/BarrasInfo/SaludBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites X2/Ships/Misilero.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Naves/Enemigos/EnemigoMisilero.gd" type="Script" id=3]
+[ext_resource path="res://Juego/SFX/dnio.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Juego/Naves/Enemigos/spawn.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Proyectiles/MisilTest.tscn" type="PackedScene" id=7]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 70.9633
+height = 43.6337
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSpawn:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 4.5, 4.5 ), Vector2( 3, 3.5 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteSpawn:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteSpawn:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.101961 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.15, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.15, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.921569, 0.807843, 0.807843, 1 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 711.598
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 802.777
+
+[node name="EnemigoMisilero" type="RigidBody2D" groups=[
+"miniMap",
+]]
+collision_layer = 2
+collision_mask = 3
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.921569, 0.807843, 0.807843, 1 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 0 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 7 )
+
+[node name="Canion" parent="." instance=ExtResource( 6 )]
+proyectil = ExtResource( 7 )
+cadencia_disparo = 5.0
+
+[node name="PuntoIzquierdo" parent="Canion" index="0"]
+position = Vector2( 99.3352, 0 )
+
+[node name="PuntoDerecho" parent="Canion" index="1"]
+position = Vector2( 99.3352, 0 )
+
+[node name="danio_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 0.58
+bus = "SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+anims/default = SubResource( 3 )
+anims/spawn = SubResource( 4 )
+
+[node name="SpriteSpawn" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.101961 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 5 )
+
+[node name="AreaDisparo" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo"]
+modulate = Color( 0, 0, 1, 1 )
+shape = SubResource( 5 )
+
+[node name="AreaDeteccion" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion"]
+position = Vector2( 0, -0.749161 )
+shape = SubResource( 6 )
+
+[node name="SaludBar" parent="." instance=ExtResource( 1 )]
+margin_left = -85.0
+margin_right = 27.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_entered"]
+[connection signal="body_exited" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_exited"]
+
+[editable path="Canion"]

@@ -1,22 +1,26 @@
 class_name Escudo
 extends Area2D
 
-## Variables
+## Atributos ###################################################################
 var esta_activado:bool = false setget ,get_esta_activado
 var energia_original:float
 
-## Variables Export
+
+## Atributos Export ############################################################
 export var energia:float = 8.0
 export var radio_desgaste:float = -1.6
 
-## Onready Var
+
+## Atributos Onready ###########################################################
 onready var impacto_sfx:AudioStreamPlayer = $AudioStreamPlayer2
 
-## Setters y Getters
+
+## Setters y Getters ###########################################################
 func get_esta_activado() -> bool:
 	return esta_activado
 
-## Metodos
+
+## Metodos #####################################################################
 func _ready() -> void:
 	energia_original = energia
 	set_process(false)
@@ -24,8 +28,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	controlar_energia(radio_desgaste * delta)
-	
-## Metodos Custom
+
+
+## Metodos Custom ##############################################################
 func controlar_energia(consumo:float) -> void:
 	energia += consumo
 	if energia > energia_original:
@@ -51,8 +56,9 @@ func desactivar() -> void:
 	esta_activado = false
 	controlar_colisionador(true)
 	$AnimationPlayer.play_backwards("activado")
-	
-## Señales Internas
+
+
+## Señales Internas ############################################################
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		if anim_name == "activando" and esta_activado:
 			$AnimationPlayer.play("activado")

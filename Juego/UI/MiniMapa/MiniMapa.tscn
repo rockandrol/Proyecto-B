@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/UI/MiniMapa/Iconos/fondo.png" type="Texture" id=1]
 [ext_resource path="res://Juego/UI/MiniMapa/MiniMapa.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Juego/UI/MiniMapa/Iconos/icon_plusLarge.png" type="Texture" id=5]
 [ext_resource path="res://Juego/UI/MiniMapa/Iconos/enemy_C.png" type="Texture" id=6]
 [ext_resource path="res://Juego/UI/MiniMapa/Iconos/star_large.png" type="Texture" id=7]
+[ext_resource path="res://Juego/UI/MiniMapa/Iconos/satellite_B.png" type="Texture" id=8]
+[ext_resource path="res://Juego/UI/MiniMapa/Iconos/icon_exclamationSmall.png" type="Texture" id=9]
 
 [node name="MiniMapa" type="MarginContainer"]
 anchor_left = 0.5
@@ -72,6 +74,18 @@ visible = false
 modulate = Color( 0.831055, 0.0616798, 0.20143, 1 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 6 )
+
+[node name="IconoMisilero" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa"]
+visible = false
+modulate = Color( 0.92549, 0.388235, 0.388235, 1 )
+scale = Vector2( 0.25, 0.15 )
+texture = ExtResource( 8 )
+
+[node name="IconoMisil" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa"]
+visible = false
+modulate = Color( 0.948242, 0.140755, 0.140755, 0.89 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
 
 [node name="TweenVisibilidad" type="Tween" parent="."]
 

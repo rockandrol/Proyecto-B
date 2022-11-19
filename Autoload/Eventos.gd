@@ -24,15 +24,17 @@ signal nivel_terminado()
 # warning-ignore:unused_signal
 signal nivel_completado()
 # warning-ignore:unused_signal
+signal explotar_misil(posicion,explosiones)
+# warning-ignore:unused_signal
 signal mostrar_cursor()
 # warning-ignore:unused_signal
 signal ocultar_cursor()
 
 
 
-###
+################################################################################
 #HUD
-###
+################################################################################
 # warning-ignore:unused_signal
 signal cambio_numero_meteoritos(numero)
 # warning-ignore:unused_signal
@@ -43,6 +45,10 @@ signal cambio_energia_laser(energia_max, energia_actual)
 signal ocultar_energia_laser()
 # warning-ignore:unused_signal
 signal cambio_energia_escudo(energia_max, energia_actual)
+# warning-ignore:unused_signal
+signal cambio_energia_turbo(energia_max, energia_actual)
+# warning-ignore:unused_signal
+signal ocultar_energia_turbo()
 # warning-ignore:unused_signal
 signal ocultar_energia_escudo()
 # warning-ignore:unused_signal

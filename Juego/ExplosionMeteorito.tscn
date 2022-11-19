@@ -1212,7 +1212,7 @@ tracks/26/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "explosion5"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visible")
@@ -1443,8 +1443,7 @@ tracks/18/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "explosion6"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visible")
 tracks/0/interp = 1
@@ -1709,8 +1708,8 @@ anims/explosion = SubResource( 2 )
 anims/explosion2 = SubResource( 3 )
 anims/explosion3 = SubResource( 4 )
 anims/explosion4 = SubResource( 5 )
-anims/explosion5 = SubResource( 7 )
-anims/explosion6 = SubResource( 6 )
+anims/explosion5 = SubResource( 6 )
+anims/explosion6 = SubResource( 7 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )

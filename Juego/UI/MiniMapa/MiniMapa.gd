@@ -19,6 +19,8 @@ onready var icono_estacion_recarga = $CuadroMiniMapa/ContenedorIconos/ZonaRender
 onready var icono_base_enemiga = $CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa/IconoBaseEnemiga
 onready var icono_interceptor = $CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa/IconoInterceptor
 onready var icono_rele_masa = $CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa/IconoReleMasa
+onready var icono_misilero = $CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa/IconoMisilero
+onready var icono_misil = $CuadroMiniMapa/ContenedorIconos/ZonaRenderizadoMiniMapa/IconoMisil
 onready var items_mini_mapa:Dictionary = {}
 
 ## Settes y Getters
@@ -32,7 +34,7 @@ func set_esta_visible(hacer_visible:bool) -> void:
 		"modulate",
 		Color(1,1,1, not hacer_visible),
 		Color(1,1,1, hacer_visible),
-		0.5,
+		2.5,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
@@ -88,6 +90,10 @@ func obtener_objetos_minimapa() -> void:
 				sprite_icono = icono_estacion_recarga.duplicate()
 			elif objeto is EnemigoInterceptor:
 				sprite_icono = icono_interceptor.duplicate()
+			elif objeto is EnemigoMisilero:
+				sprite_icono = icono_misilero.duplicate()
+			elif objeto is Misil:
+				sprite_icono = icono_misil.duplicate()
 			elif objeto is ReleMasa:
 				sprite_icono = icono_rele_masa.duplicate()
 			items_mini_mapa[objeto] = sprite_icono
@@ -108,7 +114,7 @@ func modificar_posicion_iconos() -> void:
 		else:
 			item_icono.scale = Vector2(0.2,0.2)
 
-func quitar_iconos(objeto:Node2D) -> void:
+func quitar_iconos(objeto) -> void:
 	if objeto in items_mini_mapa:
 		items_mini_mapa[objeto].queue_free()
 # warning-ignore:return_value_discarded

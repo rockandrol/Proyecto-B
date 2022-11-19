@@ -1,24 +1,26 @@
 class_name CamaraNivel
 extends Camera2D
 
-## Atributos
+## Atributos  ##################################################################
 var zoom_original:Vector2
 var puede_hacer_zoom:bool=true setget set_puede_hacer_zoom
 
-## Variables Onready
+
+## Atributos Onready  ##########################################################
 onready var tween_zoom:Tween = $TweenZoom
 
-## Setters y Getters
+
+## Setters y Getters ###########################################################
 func set_puede_hacer_zoom(puede:bool) -> void:
 	puede_hacer_zoom = puede
 
 
-## Metodos
+## Metodos  ####################################################################
 func _ready() -> void:
 	zoom_original = zoom
 
 
-## Metodos Custom
+## Metodos Custom ##############################################################
 func devolver_zoom_original() -> void:
 	puede_hacer_zoom = false
 	zoom_suavisado(zoom_original.x, zoom_original.y, 1.0)

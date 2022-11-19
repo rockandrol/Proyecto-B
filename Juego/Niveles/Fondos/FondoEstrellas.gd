@@ -1,8 +1,11 @@
 tool
 extends ParallaxBackground
 
+## Atributos Export ############################################################
 export var color_fondo: = Color.black
 
+
+## Metodos #####################################################################
 func _ready() -> void:
 	$ColorRect.color = color_fondo
 

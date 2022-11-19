@@ -1,21 +1,24 @@
 class_name SaludBar
 extends ProgressBar
 
-## Atributos Onready
+## Atributos Onready ###########################################################
 onready var tween_visibilidad:Tween = $TweenVisibilidad
 
-## Atributos Export
+
+## Atributos Export ############################################################
 export var siempre_visible:bool = false
 export var es_top_level:bool = false
 
-## Metodos 
+
+## Metodos  ####################################################################
 func _ready() -> void:
 	modulate = Color(1,1,1,siempre_visible)
 	set_as_toplevel(es_top_level)
 	if es_top_level:
 		rect_global_position = owner.global_position + rect_position
 
-## Metodos Custom
+
+## Metodos Custom ##############################################################
 func controlar_barra(hitpoints_nave:float, mostrar:bool) -> void:
 	value = hitpoints_nave
 	if not tween_visibilidad.is_active() and modulate.a != int(mostrar):
@@ -39,6 +42,8 @@ func set_valores(hitpoints:float) -> void:
 func set_hitpoints_actual(hitpoints:float) -> void:
 	value = hitpoints
 
+
+## Señales Internas ############################################################
 func _on_TweenVisibilidad_tween_all_completed() -> void:
 	if modulate.a == 1.0:
 		controlar_barra(value,false)

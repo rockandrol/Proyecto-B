@@ -4,7 +4,7 @@
 [ext_resource path="res://Juego/Proyectiles/ProyectilRed.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.38925, 15.3033 )
+extents = Vector2( 1.3381, 18.0524 )
 
 [node name="ProyectilRed" type="Area2D"]
 rotation = 1.5708
